@@ -1,6 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:travel_app/firstpage/firstpage.dart';
-import 'package:travel_app/homepage/homepage.dart';
+import 'package:travel_app/splashpage/splashpage.dart';
 import 'package:travel_app/onboardpage/onboard_pages.dart';
 import 'package:travel_app/passwordreset/forgot_password.dart';
 import 'package:travel_app/signinpage/signinpage.dart';

@@ -21,7 +21,7 @@ class _SignuppageState extends State<Signuppage> {
           onPressed: () {
             context.goNamed('signinpage');
           },
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_ios_new),
         ),
       ),
       body: Column(
@@ -125,7 +125,7 @@ class _SignuppageState extends State<Signuppage> {
                       borderRadius: BorderRadius.circular(10))),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  return context.goNamed('signuppage');
+                  return context.goNamed('passwordreset');
                 }
               },
               child: Text(
@@ -135,22 +135,22 @@ class _SignuppageState extends State<Signuppage> {
             ),
           ),
           SizedBox(height: 22),
-          RichText(
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-              ),
-              children: [
-                TextSpan(text: 'Already have an account '),
-                TextSpan(
-                  text: 'Sign In',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Already have an account'),
+              TextButton(
+                onPressed: () {
+                  return context.goNamed('signinpage');
+                },
+                child: Text(
+                  'Sign in',
                   style: TextStyle(color: Colors.blueAccent),
                 ),
-                TextSpan(text: '\n\n                 Or Connect'),
-              ],
-            ),
+              )
+            ],
           ),
+          Text('Or Connect'),
           SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

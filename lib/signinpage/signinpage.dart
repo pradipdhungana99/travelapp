@@ -24,7 +24,7 @@ class _SigninpageState extends State<Signinpage> {
           onPressed: () {
             context.goNamed('onboardingscreen');
           },
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_ios_new),
         ),
       ),
       body: Column(
@@ -98,9 +98,14 @@ class _SigninpageState extends State<Signinpage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(color: Colors.blueAccent),
+                child: TextButton(
+                  onPressed: () {
+                    context.goNamed('forgotpassword');
+                  },
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(color: Colors.blueAccent),
+                  ),
                 ),
               ),
             ],
@@ -114,9 +119,7 @@ class _SigninpageState extends State<Signinpage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10))),
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  return context.goNamed('signuppage');
-                }
+                if (_formKey.currentState!.validate()) {}
               },
               child: Text(
                 'Sign In',
@@ -125,22 +128,22 @@ class _SigninpageState extends State<Signinpage> {
             ),
           ),
           SizedBox(height: 22),
-          RichText(
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-              ),
-              children: [
-                TextSpan(text: 'Dont have an account? '),
-                TextSpan(
-                  text: 'Sign up',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Dont have an account?'),
+              TextButton(
+                onPressed: () {
+                  return context.goNamed('signuppage');
+                },
+                child: Text(
+                  'Sign Up',
                   style: TextStyle(color: Colors.blueAccent),
                 ),
-                TextSpan(text: '\n\n                 Or Connect'),
-              ],
-            ),
+              ),
+            ],
           ),
+          Text('Or Connect'),
           SizedBox(height: 100),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

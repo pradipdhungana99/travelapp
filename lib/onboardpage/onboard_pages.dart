@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -54,6 +55,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
+    } else if (_currentPage <= _pages.length) {
+      return context.goNamed('signinpage');
     } else {
       // Navigate to home screen or next screen
       debugPrint('Navigate to home screen');
@@ -109,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 SmoothPageIndicator(
                   controller: _pageController,
                   count: _pages.length,
-                  effect: const WormEffect(
+                  effect: const ExpandingDotsEffect(
                     dotHeight: 6,
                     dotWidth: 6,
                     activeDotColor: Colors.blue,
@@ -125,55 +128,52 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _buildPage(OnboardingPage page) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
-              child: Image.network(
-                height: 400,
-                width: double.infinity,
-                page.image,
-                fit: BoxFit.cover,
-              ),
+    return Column(
+      children: [
+        Expanded(
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20)),
+            child: Image.network(
+              height: 400,
+              width: double.infinity,
+              page.image,
+              fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 40),
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              style: const TextStyle(
-                fontSize: 24,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-              children: [
-                TextSpan(text: page.title),
-                TextSpan(
-                  text: page.highlightedWord,
-                  style: const TextStyle(
-                    color: Colors.orange,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            page.description,
-            textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 40),
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
             style: const TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
+              fontSize: 24,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
+            children: [
+              TextSpan(text: page.title),
+              TextSpan(
+                text: page.highlightedWord,
+                style: const TextStyle(
+                  color: Colors.orange,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 100), // Space for bottom buttons
-        ],
-      ),
+        ),
+        const SizedBox(height: 20),
+        Text(
+          page.description,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 14,
+            color: Colors.grey,
+          ),
+        ),
+        const SizedBox(height: 100), // Space for bottom buttons
+      ],
     );
   }
 }

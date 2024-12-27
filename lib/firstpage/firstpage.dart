@@ -13,7 +13,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
       if (mounted) {
-        context.goNamed('homepage');
+        context.goNamed('onboardingscreen');
       }
     });
     super.initState();

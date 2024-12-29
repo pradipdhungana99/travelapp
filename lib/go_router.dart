@@ -1,9 +1,10 @@
 import 'package:go_router/go_router.dart';
-import 'package:travel_app/splashpage/splashpage.dart';
+import 'package:travel_app/homepage/home_page.dart';
+import 'package:travel_app/splashpage/splash_page.dart';
 import 'package:travel_app/onboardpage/onboard_pages.dart';
 import 'package:travel_app/passwordreset/forgot_password.dart';
-import 'package:travel_app/signinpage/signinpage.dart';
-import 'package:travel_app/signuppage/signuppage.dart';
+import 'package:travel_app/signinpage/sign_in_page.dart';
+import 'package:travel_app/signuppage/sign_up_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/firstpage',
@@ -30,6 +31,11 @@ final GoRouter router = GoRouter(
       path: '/passwordreset',
       name: 'forgotpassword',
       builder: (context, state) => ForgotPassword(),
-    )
+    ),
+    GoRoute(
+      path: '/homepage',
+      name: 'homepage',
+      builder: (context, state) => Homepage(),
+    ),
   ],
 );

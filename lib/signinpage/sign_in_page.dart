@@ -116,6 +116,7 @@ class _SigninpageState extends State<Signinpage> {
                       borderRadius: BorderRadius.circular(10))),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {}
+                return context.goNamed('homepage');
               },
               child: Text(
                 'Sign In',

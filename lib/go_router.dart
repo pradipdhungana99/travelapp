@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:travel_app/detailspage/details_page.dart';
 import 'package:travel_app/homepage/home_page.dart';
 import 'package:travel_app/splashpage/splash_page.dart';
 import 'package:travel_app/onboardpage/onboard_pages.dart';
@@ -36,6 +37,11 @@ final GoRouter router = GoRouter(
       path: '/homepage',
       name: 'homepage',
       builder: (context, state) => Homepage(),
+    ),
+    GoRoute(
+      path: '/detailspage',
+      name: 'detailspage',
+      builder: (context, state) => DetailsPage(),
     ),
   ],
 );

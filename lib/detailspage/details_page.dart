@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
@@ -14,7 +15,9 @@ class _DetailsPageState extends State<DetailsPage> {
       appBar: AppBar(
         title: const Text('Details'),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.goNamed('homepage');
+          },
           icon: Icon(Icons.arrow_back_ios),
         ),
       ),

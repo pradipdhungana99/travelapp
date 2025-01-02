@@ -64,6 +64,7 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
           ),
           Card(
+            color: Colors.grey.shade200,
             elevation: 0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -240,7 +241,9 @@ class _DetailsPageState extends State<DetailsPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.goNamed('viewpage');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       minimumSize: const Size(double.infinity, 50),

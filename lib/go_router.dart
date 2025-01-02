@@ -6,6 +6,7 @@ import 'package:travel_app/onboardpage/onboard_pages.dart';
 import 'package:travel_app/passwordreset/forgot_password.dart';
 import 'package:travel_app/signinpage/sign_in_page.dart';
 import 'package:travel_app/signuppage/sign_up_page.dart';
+import 'package:travel_app/viewpage/view_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/firstpage',
@@ -42,6 +43,11 @@ final GoRouter router = GoRouter(
       path: '/detailspage',
       name: 'detailspage',
       builder: (context, state) => DetailsPage(),
+    ),
+    GoRoute(
+      path: '/viewpage',
+      name: 'viewpage',
+      builder: (context, state) => ViewPage(),
     ),
   ],
 );

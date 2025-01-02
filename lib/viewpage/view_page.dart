@@ -15,7 +15,7 @@ class _ViewPageState extends State<ViewPage> {
       body: Stack(
         children: [
           Image.network(
-            'https://images.pexels.com/photos/310452/pexels-photo-310452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            'https://images.pexels.com/photos/1494067/pexels-photo-1494067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -32,11 +32,11 @@ class _ViewPageState extends State<ViewPage> {
                     onPressed: () {
                       context.goNamed('detailspage');
                     },
-                    icon: Icon(Icons.arrow_back_ios),
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
                   ),
                   Text(
                     'View',
-                    style: TextStyle(fontSize: 25),
+                    style: TextStyle(fontSize: 25, color: Colors.white),
                   ),
                 ],
               ),

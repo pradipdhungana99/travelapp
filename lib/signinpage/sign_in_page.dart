@@ -88,7 +88,7 @@ class _SigninpageState extends State<Signinpage> {
                       hintText: '**********',
                       suffixIcon: IconButton(
                         icon: isPasswordVisible
-                            ? Icon(Icons.abc)
+                            ? Icon(Icons.remove_red_eye_outlined)
                             : Icon(Icons.remove_red_eye),
                         onPressed: () {
                           setState(() {

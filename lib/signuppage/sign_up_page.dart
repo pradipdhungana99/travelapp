@@ -13,6 +13,7 @@ class _SignuppageState extends State<Signuppage> {
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +66,14 @@ class _SignuppageState extends State<Signuppage> {
                   padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     controller: _emailController,
+                    validator: (value) {
+                      if (!RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value!)) {
+                        return 'Invalid email';
+                      }
+                      return null;
+                    },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -84,16 +93,25 @@ class _SignuppageState extends State<Signuppage> {
                   padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     controller: _passwordController,
+                    validator: (value) {
+                      if (value!.length < 8) {
+                        return 'Password must be at least 8 characters';
+                      }
+                      return null;
+                    },
                     keyboardType: TextInputType.visiblePassword,
+                    obscureText: !isPasswordVisible,
                     onChanged: (value) {},
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)),
                       hintText: '**********',
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.hide_source),
+                        icon: Icon(Icons.remove_red_eye),
                         onPressed: () {
-                          _passwordController.clear();
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
                         },
                       ),
                     ),
@@ -101,19 +119,6 @@ class _SignuppageState extends State<Signuppage> {
                 ),
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  'password must be 8 character',
-                  style:
-                      TextStyle(color: const Color.fromARGB(255, 11, 11, 11)),
-                ),
-              ),
-            ],
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),

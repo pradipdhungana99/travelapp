@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/detailspage/details_page.dart';
 import 'package:travel_app/homepage/home_page.dart';
+import 'package:travel_app/otpverification/otp_verification.dart';
 import 'package:travel_app/splashpage/splash_page.dart';
 import 'package:travel_app/onboardpage/onboard_pages.dart';
 import 'package:travel_app/passwordreset/forgot_password.dart';
@@ -40,19 +41,25 @@ final GoRouter router = GoRouter(
       builder: (context, state) => Homepage(),
       routes: [
         GoRoute(
-            path: ':destinationId',
-            name: 'detailspage',
-            builder: (context, state) => DetailsPage(
-                  destinationId: state.pathParameters['destinationId']!,
-                ),
-            routes: [
-              GoRoute(
-                path: 'viewpage',
-                name: 'viewpage',
-                builder: (context, state) => ViewPage(),
-              ),
-            ]),
+          path: ':destinationId',
+          name: 'detailspage',
+          builder: (context, state) => DetailsPage(
+            destinationId: state.pathParameters['destinationId']!,
+          ),
+          routes: [
+            GoRoute(
+              path: 'viewpage',
+              name: 'viewpage',
+              builder: (context, state) => ViewPage(),
+            ),
+          ],
+        ),
       ],
     ),
+    GoRoute(
+      path: '/otpverification',
+      name: 'otpverification',
+      builder: (context, state) => OtpVerificationPage(),
+    )
   ],
 );

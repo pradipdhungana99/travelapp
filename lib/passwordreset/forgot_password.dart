@@ -53,7 +53,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   minimumSize: Size(double.infinity, 60),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10))),
-              onPressed: () {},
+              onPressed: () {
+                context.goNamed('otpverification');
+              },
               child: Text(
                 'Reset Password',
                 style: TextStyle(color: Colors.white),

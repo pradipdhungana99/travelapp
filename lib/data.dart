@@ -5,6 +5,7 @@ class Destination {
   final String location;
   final String id;
   final double pricePerperson;
+  final String description;
 
   Destination({
     required this.name,
@@ -13,11 +14,13 @@ class Destination {
     required this.location,
     required this.id,
     required this.pricePerperson,
+    required this.description,
   });
 }
 
 final List<Destination> destinations = [
   Destination(
+    description: '',
     id: '1',
     name: 'Eiffel Tower',
     image:
@@ -27,6 +30,7 @@ final List<Destination> destinations = [
     pricePerperson: 100.0,
   ),
   Destination(
+    description: '',
     id: '2',
     name: 'Historic Architecture, Toledo',
     image:
@@ -36,6 +40,7 @@ final List<Destination> destinations = [
     pricePerperson: 200.0,
   ),
   Destination(
+    description: '',
     id: '3',
     name: 'Everest Base Camp',
     image:
@@ -45,6 +50,7 @@ final List<Destination> destinations = [
     pricePerperson: 30.0,
   ),
   Destination(
+    description: '',
     id: '4',
     name: 'St. Paul Cathedral',
     image:

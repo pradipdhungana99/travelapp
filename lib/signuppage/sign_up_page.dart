@@ -133,9 +133,23 @@ class _SignuppageState extends State<Signuppage> {
                   return context.goNamed('passwordreset');
                 }
               },
-              child: Text(
-                'Sign Up',
-                style: TextStyle(color: Colors.white),
+              child: TextButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("Sign Up"),
+                        content: Text(
+                            'Congratulations, you have successfully created an account, go to sign in page and sign in with your new account'),
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ),

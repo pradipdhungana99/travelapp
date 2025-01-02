@@ -37,6 +37,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),

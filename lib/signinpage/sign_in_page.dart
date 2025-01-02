@@ -12,6 +12,7 @@ class _SigninpageState extends State<Signinpage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +53,14 @@ class _SigninpageState extends State<Signinpage> {
                   padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     controller: _emailController,
+                    validator: (value) {
+                      if (!RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value!)) {
+                        return 'Please enter a valid email';
+                      }
+                      return null;
+                    },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -71,15 +80,20 @@ class _SigninpageState extends State<Signinpage> {
                   padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     controller: _passwordController,
+                    obscureText: !isPasswordVisible,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)),
                       hintText: '**********',
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.hide_source),
+                        icon: isPasswordVisible
+                            ? Icon(Icons.abc)
+                            : Icon(Icons.remove_red_eye),
                         onPressed: () {
-                          _passwordController.clear();
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
                         },
                       ),
                     ),
@@ -115,8 +129,9 @@ class _SigninpageState extends State<Signinpage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10))),
               onPressed: () {
-                if (_formKey.currentState!.validate()) {}
-                return context.goNamed('homepage');
+                if (_formKey.currentState!.validate()) {
+                  return context.goNamed('homepage');
+                }
               },
               child: Text(
                 'Sign In',

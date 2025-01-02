@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:travel_app/data.dart';
 // import 'package:go_router/go_router.dart';
 
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+  final String destinationId;
+
+  const DetailsPage({super.key, required this.destinationId});
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -19,6 +22,8 @@ class _DetailsPageState extends State<DetailsPage> {
   ];
   @override
   Widget build(BuildContext context) {
+    final destination = destinations
+        .firstWhere((element) => element.id == widget.destinationId);
     return Scaffold(
       body: ListView(
         children: [
@@ -26,7 +31,7 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Stack(
               children: [
                 Image.network(
-                  'https://images.pexels.com/photos/14705250/pexels-photo-14705250.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                  destination.image,
                   height: 350,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -78,14 +83,14 @@ class _DetailsPageState extends State<DetailsPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Niladri Reservior',
+                            destination.name,
                             style: TextStyle(fontSize: 30),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Tekergat Sunamgnj',
+                            destination.location,
                             style: TextStyle(
                                 fontSize: 20,
                                 color:
@@ -95,7 +100,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       ],
                     ),
                     Image.network(
-                      'https://cdn-icons-png.flaticon.com/512/6858/6858504.png',
+                      destination.image,
                       height: 50,
                       width: 50,
                       fit: BoxFit.cover,
@@ -120,13 +125,13 @@ class _DetailsPageState extends State<DetailsPage> {
                           Icons.star,
                           color: Colors.amberAccent,
                         ),
-                        Text('4.7(2498)')
+                        Text(destination.rating.toStringAsFixed(2))
                       ],
                     ),
                     Row(
                       children: [
                         Text(
-                          '\$59/',
+                          '\$${destination.pricePerperson}/',
                           style: TextStyle(color: Colors.blueAccent),
                         ),
                         Text('Person')
@@ -242,7 +247,9 @@ class _DetailsPageState extends State<DetailsPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: ElevatedButton(
                     onPressed: () {
-                      context.goNamed('viewpage');
+                      context.goNamed('viewpage', pathParameters: {
+                        'destinationId': widget.destinationId
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,

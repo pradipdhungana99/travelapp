@@ -1,47 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:travel_app/data.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<Destination> destinations = [
-      Destination(
-        name: 'Eiffel Tower',
-        image:
-            'https://images.pexels.com/photos/1530259/pexels-photo-1530259.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        location: 'Paris, France',
-        rating: 4.7,
-      ),
-      Destination(
-        name: 'Historic Architecture, Toledo',
-        image:
-            'https://images.pexels.com/photos/29890134/pexels-photo-29890134/free-photo-of-historic-architecture-in-toledo-spain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        location: 'Toledo, CM, Spain',
-        rating: 4.5,
-      ),
-      Destination(
-        name: 'Everest Base Camp',
-        image:
-            'https://images.pexels.com/photos/14981339/pexels-photo-14981339/free-photo-of-a-man-standing-on-gray-rock.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        location: 'Nepal, Asia',
-        rating: 4.5,
-      ),
-      Destination(
-        name: 'St. Paul Cathedral',
-        image:
-            'https://images.pexels.com/photos/2425694/pexels-photo-2425694.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        location: 'London, UK',
-        rating: 4.5,
-      ),
-    ];
-    // final places = [
-    //   'https://images.pexels.com/photos/1078983/pexels-photo-1078983.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    //   'https://images.pexels.com/photos/1486974/pexels-photo-1486974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    //   'https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg',
-    //   'https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-    // ];
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -151,19 +116,6 @@ class Homepage extends StatelessWidget {
   }
 }
 
-class Destination {
-  final String name;
-  final String image;
-  final double rating;
-  final String location;
-
-  Destination(
-      {required this.name,
-      required this.image,
-      required this.rating,
-      required this.location});
-}
-
 class DestinationCards extends StatelessWidget {
   final Destination destination;
 
@@ -202,7 +154,9 @@ class DestinationCards extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         child: GestureDetector(
                           onTap: () {
-                            context.goNamed('detailspage');
+                            context.goNamed('detailspage', pathParameters: {
+                              'destinationId': destination.id,
+                            });
                           },
                           child: Image.network(
                             destination.image,

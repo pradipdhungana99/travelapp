@@ -30,7 +30,7 @@ class _ViewPageState extends State<ViewPage> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      context.goNamed('detailspage');
+                      context.pop();
                     },
                     icon: Icon(Icons.arrow_back_ios, color: Colors.white),
                   ),

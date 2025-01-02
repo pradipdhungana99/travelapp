@@ -38,16 +38,21 @@ final GoRouter router = GoRouter(
       path: '/homepage',
       name: 'homepage',
       builder: (context, state) => Homepage(),
-    ),
-    GoRoute(
-      path: '/detailspage',
-      name: 'detailspage',
-      builder: (context, state) => DetailsPage(),
-    ),
-    GoRoute(
-      path: '/viewpage',
-      name: 'viewpage',
-      builder: (context, state) => ViewPage(),
+      routes: [
+        GoRoute(
+            path: ':destinationId',
+            name: 'detailspage',
+            builder: (context, state) => DetailsPage(
+                  destinationId: state.pathParameters['destinationId']!,
+                ),
+            routes: [
+              GoRoute(
+                path: 'viewpage',
+                name: 'viewpage',
+                builder: (context, state) => ViewPage(),
+              ),
+            ]),
+      ],
     ),
   ],
 );

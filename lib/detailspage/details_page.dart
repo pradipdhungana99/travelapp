@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
@@ -9,17 +10,257 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  final images = [
+    'https://images.pexels.com/photos/29768361/pexels-photo-29768361/free-photo-of-stylish-woman-in-urban-setting-with-motion-blur.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/26570991/pexels-photo-26570991/free-photo-of-xmas-cards-in-niche.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/29990907/pexels-photo-29990907/free-photo-of-artisan-bread-and-olives-with-appetizers.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/14563895/pexels-photo-14563895.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/29694769/pexels-photo-29694769/free-photo-of-cute-christmas-gnomes-by-the-fireplace.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Details'),
-        leading: IconButton(
-          onPressed: () {
-            context.goNamed('homepage');
-          },
-          icon: Icon(Icons.arrow_back_ios),
-        ),
+      body: ListView(
+        children: [
+          SingleChildScrollView(
+            child: Stack(
+              children: [
+                Image.network(
+                  'https://images.pexels.com/photos/14705250/pexels-photo-14705250.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                  height: 350,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                Positioned(
+                  top: 30,
+                  left: 0, // Added to ensure it starts from the left
+                  right: 0, // Added to ensure it extends to the right
+                  child: SizedBox(
+                    width: MediaQuery.of(context)
+                        .size
+                        .width, // Set container width to screen width
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            context.goNamed('homepage');
+                          },
+                          icon: Icon(Icons.arrow_back_ios),
+                        ),
+                        Text(
+                          'Details',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.bookmark_border),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Card(
+            elevation: 0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Niladri Reservior',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Tekergat Sunamgnj',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color:
+                                    const Color.fromARGB(255, 105, 105, 105)),
+                          ),
+                        )
+                      ],
+                    ),
+                    Image.network(
+                      'https://cdn-icons-png.flaticon.com/512/6858/6858504.png',
+                      height: 50,
+                      width: 50,
+                      fit: BoxFit.cover,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.location_on_outlined),
+                        Text('Tekergat')
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: Colors.amberAccent,
+                        ),
+                        Text('4.7(2498)')
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '\$59/',
+                          style: TextStyle(color: Colors.blueAccent),
+                        ),
+                        Text('Person')
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    spacing: 20,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/29851701/pexels-photo-29851701/free-photo-of-elegant-dessert-display-with-sparkling-touch.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/26570991/pexels-photo-26570991/free-photo-of-xmas-cards-in-niche.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/29694769/pexels-photo-29694769/free-photo-of-cute-christmas-gnomes-by-the-fireplace.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/29768361/pexels-photo-29768361/free-photo-of-stylish-woman-in-urban-setting-with-motion-blur.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/29784452/pexels-photo-29784452/free-photo-of-black-and-white-palm-trees-at-pismo-beach.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/29054656/pexels-photo-29054656/free-photo-of-dynamic-motion-of-berlin-tram-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/28594392/pexels-photo-28594392/free-photo-of-artistic-flat-lay-of-coffee-essentials-on-dark-surface.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/29076255/pexels-photo-29076255/free-photo-of-vibrant-indoor-market-scene-with-stalls.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/29487999/pexels-photo-29487999/free-photo-of-seagulls-flying-over-istanbul-skyline.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    'About Destination',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                      'Destination places are the heart of travel experiences, offering a diverse range of attractions and opportunities for exploration. From bustling metropolises teeming with cultural and historical landmarks to serene natural wonders like pristine beaches and majestic mountains, each destination has its own unique charm. These places provide a chance to step outside of our daily routines, immerse ourselves in different cultures, broaden our horizons, and create lasting memories. Whether seeking adventure, relaxation, or cultural immersion, the world is filled with countless destinations waiting to be discovered and explored.'),
+                ),
+                SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      minimumSize: const Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      'Book Now',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

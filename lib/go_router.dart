@@ -65,7 +65,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/schedulepage',
       name: 'schedulepage',
-      builder: (context, state) => SchedulePage(),
+      builder: (context, state) => TableEventsExample(),
     )
   ],
 );

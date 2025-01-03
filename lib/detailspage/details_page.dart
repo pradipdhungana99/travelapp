@@ -116,7 +116,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     Row(
                       children: [
                         Icon(Icons.location_on_outlined),
-                        Text('Tekergat')
+                        Text(destination.city),
                       ],
                     ),
                     Row(
@@ -239,8 +239,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                      'Destination places are the heart of travel experiences, offering a diverse range of attractions and opportunities for exploration. From bustling metropolises teeming with cultural and historical landmarks to serene natural wonders like pristine beaches and majestic mountains, each destination has its own unique charm. These places provide a chance to step outside of our daily routines, immerse ourselves in different cultures, broaden our horizons, and create lasting memories. Whether seeking adventure, relaxation, or cultural immersion, the world is filled with countless destinations waiting to be discovered and explored.'),
+                  child: Text(destination.description),
                 ),
                 SizedBox(height: 5),
                 Padding(

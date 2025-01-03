@@ -1,3 +1,7 @@
+import 'dart:collection';
+
+import 'package:table_calendar/table_calendar.dart';
+
 class Destination {
   final String name;
   final String image;
@@ -6,6 +10,7 @@ class Destination {
   final String id;
   final double pricePerperson;
   final String description;
+  final String city;
 
   Destination({
     required this.name,
@@ -15,12 +20,15 @@ class Destination {
     required this.id,
     required this.pricePerperson,
     required this.description,
+    required this.city,
   });
 }
 
 final List<Destination> destinations = [
   Destination(
-    description: '',
+    city: 'Paris',
+    description:
+        'Paris is the capital of France, its largest city and also the center of French politics, economy, culture and business. Paris is the fourth largest city in the world after New York, London, and Tokyo.',
     id: '1',
     name: 'Eiffel Tower',
     image:
@@ -30,7 +38,9 @@ final List<Destination> destinations = [
     pricePerperson: 100.0,
   ),
   Destination(
-    description: '',
+    city: 'City of Ohio',
+    description:
+        'Toledo is considered most representative of Spanish culture, and its historic centre was designated a UNESCO World Heritage site in 1986. Its rocky site is traversed by narrow, winding streets, with steep gradients and rough surfaces, centring on the Plaza del Zocodover.',
     id: '2',
     name: 'Historic Architecture, Toledo',
     image:
@@ -40,7 +50,9 @@ final List<Destination> destinations = [
     pricePerperson: 200.0,
   ),
   Destination(
-    description: '',
+    city: 'Solukhumbu',
+    description:
+        'Everest Base Camp is a high-altitude settlement in the Himalayas of Nepal, situated at an elevation of approximately 5,364 meters (17,598 feet). 1  It serves as a starting point for many climbers attempting to summit Mount Everest, the worlds highest peak. 2 ',
     id: '3',
     name: 'Everest Base Camp',
     image:
@@ -50,7 +62,9 @@ final List<Destination> destinations = [
     pricePerperson: 30.0,
   ),
   Destination(
-    description: '',
+    city: 'City of London',
+    description:
+        'Joining the likes of the Roman Pantheon, St Pauls Cathedral boasts one of the biggest domes in the world at 366 feet high. Scale hundreds of steps to the top and bask in the architecture. Spend some time in its famous Whispering Gallery - a walkway thirty meters up.',
     id: '4',
     name: 'St. Paul Cathedral',
     image:
@@ -60,3 +74,50 @@ final List<Destination> destinations = [
     pricePerperson: 50.0,
   ),
 ];
+
+class Event {
+  final String title;
+
+  const Event(this.title);
+
+  @override
+  String toString() => title;
+}
+
+/// Example events.
+///
+/// Using a [LinkedHashMap] is highly recommended if you decide to use a map.
+final kEvents = LinkedHashMap<DateTime, List<Event>>(
+  equals: isSameDay,
+  hashCode: getHashCode,
+)..addAll(_kEventSource);
+
+final _kEventSource = {
+  for (var item in List.generate(50, (index) => index))
+    DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5): List.generate(
+      item % 4 + 1,
+      (index) => Event('Event $item | ${index + 1}'),
+    ),
+}..addAll({
+    kToday: [
+      const Event("Today's Event 1"),
+      const Event("Today's Event 2"),
+    ],
+  });
+
+int getHashCode(DateTime key) {
+  return key.day * 1000000 + key.month * 10000 + key.year;
+}
+
+/// Returns a list of [DateTime] objects from [first] to [last], inclusive.
+List<DateTime> daysInRange(DateTime first, DateTime last) {
+  final dayCount = last.difference(first).inDays + 1;
+  return List.generate(
+    dayCount,
+    (index) => DateTime.utc(first.year, first.month, first.day + index),
+  );
+}
+
+final kToday = DateTime.now();
+final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
+final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);

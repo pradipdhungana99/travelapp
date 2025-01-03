@@ -52,8 +52,14 @@ class _SignuppageState extends State<Signuppage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: TextField(
+                  child: TextFormField(
                     controller: _usernameController,
+                    // validator: (value) {
+                    // if (RegExp("^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$").hasMatch(value!)){
+                    // return 'Invalid try again with different name';
+                    // }
+                    // return null;
+                    // },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),

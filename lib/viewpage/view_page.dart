@@ -20,26 +20,21 @@ class _ViewPageState extends State<ViewPage> {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
-          Positioned(
-            top: 30,
-            left: 0, // Added to ensure it starts from the left
-            right: 0, // Added to ensure it extends to the right
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      context.pop();
-                    },
-                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-                  ),
-                  Text(
-                    'View',
-                    style: TextStyle(fontSize: 25, color: Colors.white),
-                  ),
-                ],
-              ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    context.pop();
+                  },
+                  icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                ),
+                Text(
+                  'View',
+                  style: TextStyle(fontSize: 25, color: Colors.white),
+                ),
+              ],
             ),
           ),
           Positioned(
@@ -206,7 +201,7 @@ class _ViewPageState extends State<ViewPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: ElevatedButton(
                         onPressed: () {
-                          context.goNamed('viewpage');
+                          context.goNamed('schedulepage');
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:

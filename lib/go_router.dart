@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:travel_app/detailspage/details_page.dart';
 import 'package:travel_app/homepage/home_page.dart';
 import 'package:travel_app/otpverification/otp_verification.dart';
+import 'package:travel_app/schedulepage/schedule_page.dart';
 import 'package:travel_app/splashpage/splash_page.dart';
 import 'package:travel_app/onboardpage/onboard_pages.dart';
 import 'package:travel_app/passwordreset/forgot_password.dart';
@@ -60,6 +61,11 @@ final GoRouter router = GoRouter(
       path: '/otpverification',
       name: 'otpverification',
       builder: (context, state) => OtpVerificationPage(),
+    ),
+    GoRoute(
+      path: '/schedulepage',
+      name: 'schedulepage',
+      builder: (context, state) => SchedulePage(),
     )
   ],
 );

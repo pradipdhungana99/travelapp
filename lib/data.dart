@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Destination {
@@ -46,7 +47,7 @@ final List<Destination> destinations = [
     image:
         'https://images.pexels.com/photos/29890134/pexels-photo-29890134/free-photo-of-historic-architecture-in-toledo-spain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     location: 'Toledo, CM, Spain',
-    rating: 4.5,
+    rating: 4.3,
     pricePerperson: 200.0,
   ),
   Destination(
@@ -58,7 +59,7 @@ final List<Destination> destinations = [
     image:
         'https://images.pexels.com/photos/14981339/pexels-photo-14981339/free-photo-of-a-man-standing-on-gray-rock.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     location: 'Nepal, Asia',
-    rating: 4.5,
+    rating: 4.8,
     pricePerperson: 30.0,
   ),
   Destination(
@@ -70,7 +71,7 @@ final List<Destination> destinations = [
     image:
         'https://images.pexels.com/photos/2425694/pexels-photo-2425694.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     location: 'London, UK',
-    rating: 4.5,
+    rating: 4.6,
     pricePerperson: 50.0,
   ),
 ];
@@ -121,3 +122,40 @@ List<DateTime> daysInRange(DateTime first, DateTime last) {
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
 final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+
+class Schedule {
+  final String scheduleimage;
+  final String scheduledate;
+  final String scheduletitle;
+  final String schedulelocation;
+
+  Schedule(
+      {required this.scheduleimage,
+      required this.scheduledate,
+      required this.scheduletitle,
+      required this.schedulelocation});
+}
+
+final List<Schedule> schedules = [
+  Schedule(
+    scheduleimage:
+        'https://images.pexels.com/photos/15823865/pexels-photo-15823865/free-photo-of-palm-trees-alley.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    scheduledate: '24 January 2024',
+    scheduletitle: 'Niladri Reservior',
+    schedulelocation: 'Tekergat, Sunamgnj',
+  ),
+  Schedule(
+    scheduleimage:
+        'https://images.pexels.com/photos/440155/pexels-photo-440155.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    scheduledate: '26 January 2024',
+    scheduletitle: 'Hight Rech Park',
+    schedulelocation: 'Zero Point, Sylhet',
+  ),
+  Schedule(
+    scheduleimage:
+        'https://images.pexels.com/photos/11463990/pexels-photo-11463990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    scheduledate: '28 January 2024',
+    scheduletitle: 'Drama Reservior',
+    schedulelocation: 'Drama, Kuningan',
+  ),
+];

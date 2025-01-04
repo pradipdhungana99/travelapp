@@ -170,11 +170,84 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                     style: TextStyle(fontSize: 20, color: Colors.blue)),
               ],
             ),
+          ),
+          SizedBox(
+            height: 400,
+            child: ListView.separated(
+              itemBuilder: (context, index) =>
+                  ScheduleCards(schedule: schedules[index]),
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => SizedBox(
+                height: 10,
+              ),
+              itemCount: schedules.length,
+            ),
           )
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: true,
+        currentIndex: 4,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month_outlined), label: 'Calendar'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle_rounded),
+              label: 'Profile',
+              backgroundColor: Colors.blueGrey[800])
         ],
       ),
     );
   }
 }
 
-/// Example event class.
+class ScheduleCards extends StatelessWidget {
+  final Schedule schedule;
+  const ScheduleCards({super.key, required this.schedule});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                schedule.scheduleimage,
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(width: 10),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.calendar_month_outlined),
+                    Text(schedule.scheduledate),
+                  ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(schedule.scheduletitle),
+                Row(
+                  children: [
+                    Icon(Icons.location_on_outlined),
+                    Text(schedule.schedulelocation),
+                  ],
+                ),
+              ],
+            ),
+            IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+          ],
+        )
+      ],
+    );
+  }
+}

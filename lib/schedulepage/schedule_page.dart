@@ -176,7 +176,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
             child: ListView.separated(
               itemBuilder: (context, index) =>
                   ScheduleCards(schedule: schedules[index]),
-              scrollDirection: Axis.horizontal,
+              scrollDirection: Axis.vertical,
               separatorBuilder: (context, index) => SizedBox(
                 height: 10,
               ),
@@ -210,9 +210,12 @@ class ScheduleCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Card(
+        child: SingleChildScrollView(
+            child: Row(
+          spacing: 20,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
@@ -227,6 +230,7 @@ class ScheduleCards extends StatelessWidget {
             Column(
               children: [
                 Row(
+                  spacing: 10,
                   children: [
                     Icon(Icons.calendar_month_outlined),
                     Text(schedule.scheduledate),
@@ -235,7 +239,10 @@ class ScheduleCards extends StatelessWidget {
                 SizedBox(
                   height: 5,
                 ),
-                Text(schedule.scheduletitle),
+                Text(
+                  schedule.scheduletitle,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
                 Row(
                   children: [
                     Icon(Icons.location_on_outlined),
@@ -246,8 +253,8 @@ class ScheduleCards extends StatelessWidget {
             ),
             IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
           ],
-        )
-      ],
+        )),
+      ),
     );
   }
 }

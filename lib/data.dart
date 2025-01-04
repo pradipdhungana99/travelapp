@@ -154,7 +154,7 @@ final List<Schedule> schedules = [
     scheduleimage:
         'https://images.pexels.com/photos/11463990/pexels-photo-11463990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     scheduledate: '28 January 2024',
-    scheduletitle: 'Drama Reservior',
-    schedulelocation: 'Drama, Kuningan',
+    scheduletitle: 'Darma Reservior',
+    schedulelocation: 'Darma, Kuningan',
   ),
 ];

@@ -154,9 +154,12 @@ class DestinationCards extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         child: GestureDetector(
                           onTap: () {
-                            context.goNamed('detailspage', pathParameters: {
-                              'destinationId': destination.id,
-                            });
+                            context.goNamed(
+                              'detailspage',
+                              pathParameters: {
+                                'destinationId': destination.id,
+                              },
+                            );
                           },
                           child: Image.network(
                             destination.image,
@@ -171,12 +174,13 @@ class DestinationCards extends StatelessWidget {
                         top: 8,
                         right: 8,
                         child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.bookmark_border,
-                              color: const Color.fromARGB(255, 14, 14, 14),
-                              size: 24,
-                            )),
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.bookmark_border,
+                            color: const Color.fromARGB(255, 14, 14, 14),
+                            size: 24,
+                          ),
+                        ),
                       ),
                     ],
                   ),

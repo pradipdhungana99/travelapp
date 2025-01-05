@@ -64,17 +64,18 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:travel_app/data.dart';
 
-class TableEventsExample extends StatefulWidget {
-  const TableEventsExample({super.key});
+class SchedulePage extends StatefulWidget {
+  const SchedulePage({super.key});
 
   @override
-  State<TableEventsExample> createState() => _TableEventsExampleState();
+  State<SchedulePage> createState() => _TableEventsExampleState();
 }
 
-class _TableEventsExampleState extends State<TableEventsExample> {
+class _TableEventsExampleState extends State<SchedulePage> {
   late final ValueNotifier<List<Event>> _selectedEvents;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
@@ -166,8 +167,15 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                   'My Schedule',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
-                Text('View all',
-                    style: TextStyle(fontSize: 20, color: Colors.blue)),
+                TextButton(
+                  onPressed: () {
+                    context.goNamed('popularpage');
+                  },
+                  child: Text(
+                    'View all',
+                    style: TextStyle(fontSize: 20, color: Colors.blue),
+                  ),
+                ),
               ],
             ),
           ),

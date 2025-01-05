@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
+
 import 'package:travel_app/detailspage/details_page.dart';
 import 'package:travel_app/homepage/home_page.dart';
 import 'package:travel_app/otpverification/otp_verification.dart';
+import 'package:travel_app/popularplacespage/popular_places.dart';
 import 'package:travel_app/schedulepage/schedule_page.dart';
 import 'package:travel_app/splashpage/splash_page.dart';
 import 'package:travel_app/onboardpage/onboard_pages.dart';
@@ -65,7 +67,11 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/schedulepage',
       name: 'schedulepage',
-      builder: (context, state) => TableEventsExample(),
-    )
+      builder: (context, state) => SchedulePage(),
+    ),
+    GoRoute(
+        path: '/popularplacespage',
+        name: 'popularpage',
+        builder: (context, state) => PopularPlaces())
   ],
 );

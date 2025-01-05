@@ -158,3 +158,56 @@ final List<Schedule> schedules = [
     schedulelocation: 'Darma, Kuningan',
   ),
 ];
+
+class PopularCards {
+  final String cardId;
+  final String image;
+  final String title;
+  final String location;
+  final String pricePerPerson;
+  final String ratings;
+
+  PopularCards(
+      {required this.cardId,
+      required this.image,
+      required this.title,
+      required this.location,
+      required this.pricePerPerson,
+      required this.ratings});
+}
+
+List<PopularCards> popularcards = [
+  PopularCards(
+    cardId: '1',
+    image:
+        'https://images.pexels.com/photos/3073666/pexels-photo-3073666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    title: 'Green Tree Road',
+    location: 'Paris, France',
+    pricePerPerson: '\$${300}',
+    ratings: '4.5',
+  ),
+  PopularCards(
+      cardId: '2',
+      image:
+          'https://images.pexels.com/photos/6942667/pexels-photo-6942667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      title: 'Mexico River View',
+      location: 'Mexico',
+      pricePerPerson: '\$${780}',
+      ratings: '4.6'),
+  PopularCards(
+      cardId: '3',
+      image:
+          'https://images.pexels.com/photos/3722818/pexels-photo-3722818.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      title: 'Madrid Community',
+      location: 'Tekergat, Sunamgnj',
+      pricePerPerson: '\$${560}',
+      ratings: '4.8'),
+  PopularCards(
+      cardId: '4',
+      image:
+          'https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      title: 'Venezia Architecture',
+      location: 'Venezia, Veneto, Italy',
+      pricePerPerson: '\$${450}',
+      ratings: '4.9')
+];

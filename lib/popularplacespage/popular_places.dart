@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:travel_app/data.dart';
 
@@ -25,6 +26,14 @@ class _PopularPlacesState extends State<PopularPlaces> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.goNamed('profilepage');
+            },
+            icon: Icon(Icons.arrow_forward_ios_outlined),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -64,6 +73,7 @@ class PopularPlaceCards extends StatelessWidget {
     return Stack(
       children: [
         Container(
+          padding: EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
@@ -79,30 +89,32 @@ class PopularPlaceCards extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.network(
-                      popularCard.image,
-                      height: 120,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    top: 8,
-                    right: 8,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_border_outlined,
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        size: 24,
+              Expanded(
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        popularCard.image,
+                        // height: 120,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.favorite_border_outlined,
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Text(
                 popularCard.title,

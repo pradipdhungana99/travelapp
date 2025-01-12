@@ -194,7 +194,7 @@ class _TableEventsExampleState extends State<SchedulePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: true,
+        showUnselectedLabels: true,
         currentIndex: 4,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),

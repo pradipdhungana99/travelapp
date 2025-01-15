@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:travel_app/detailspage/details_page.dart';
 import 'package:travel_app/homepage/home_page.dart';
 import 'package:travel_app/otpverification/otp_verification.dart';
+import 'package:travel_app/popularpackagepage/popular_package_page.dart';
 import 'package:travel_app/popularplacespage/popular_places.dart';
 // import 'package:travel_app/practice.dart';
 import 'package:travel_app/profilepage/profile_page.dart';
@@ -80,6 +81,11 @@ final GoRouter router = GoRouter(
       path: '/profilepage',
       name: 'profilepage',
       builder: (context, state) => ProfilePage(),
+    ),
+    GoRoute(
+      path: '/popularpackagepage',
+      name: 'popularpackage',
+      builder: (context, state) => PopularPackagePage(),
     ),
   ],
 );

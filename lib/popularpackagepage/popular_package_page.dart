@@ -18,6 +18,7 @@ class PopularPackagePage extends StatelessWidget {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20),
           Padding(
@@ -62,35 +63,35 @@ class PopularPackage {
   static List<PopularPackage> popularpackages = [
     PopularPackage(
       image:
-          'https://images.pexels.com/photos/235986/pexels-photo-235986.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      title: 'Trip to Paris',
+          'https://images.pexels.com/photos/9586148/pexels-photo-9586148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      title: 'Rara Lake',
       tripDate: '2022-01-01',
       ratings: '4.5',
-      pricePerStay: '\$1000',
+      pricePerStay: '\$840',
     ),
     PopularPackage(
       image:
-          'https://images.pexels.com/photos/207353/pexels-photo-207353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      title: 'Trip to Paris',
+          'https://images.pexels.com/photos/4235503/pexels-photo-4235503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      title: 'Annapurna, Nepal',
       tripDate: '2022-01-01',
       ratings: '4.5',
-      pricePerStay: '\$1000',
+      pricePerStay: '\$690',
     ),
     PopularPackage(
       image:
-          'https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      title: 'Trip to Paris',
+          'https://images.pexels.com/photos/14989389/pexels-photo-14989389/free-photo-of-landscape-photography-of-phewa-lake.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      title: 'Pokhara, Fewa Lake',
       tripDate: '2022-01-01',
       ratings: '4.5',
-      pricePerStay: '\$1000',
+      pricePerStay: '\$800',
     ),
     PopularPackage(
       image:
-          'https://images.pexels.com/photos/1590549/pexels-photo-1590549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      title: 'Trip to Paris',
+          'https://images.pexels.com/photos/2104882/pexels-photo-2104882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      title: 'Kathmandu, Bhaktapur',
       tripDate: '2022-01-01',
       ratings: '4.5',
-      pricePerStay: '\$1000',
+      pricePerStay: '\$999',
     ),
   ];
 }
@@ -101,40 +102,60 @@ class PopularTripPackage extends StatelessWidget {
   const PopularTripPackage({super.key, required this.popularpackage});
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: 200,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 3,
-                offset: Offset(0, 3),
-              ),
-            ],
+    return Container(
+      height: 200,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 2,
+            offset: Offset(0, 3),
           ),
-          child: Row(
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              popularpackage.image,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 15,
             children: [
-              Image.network(
-                popularpackage.image,
-                fit: BoxFit.cover,
+              Text(
+                popularpackage.title,
+                style: TextStyle(fontSize: 40),
               ),
-              Column(
+              Row(
+                spacing: 10,
                 children: [
-                  Text(popularpackage.title),
-                  Text(popularpackage.tripDate),
-                  Text(popularpackage.ratings)
+                  Icon(Icons.calendar_month_outlined),
+                  Text(popularpackage.tripDate, style: TextStyle(fontSize: 20)),
                 ],
               ),
+              Row(
+                spacing: 5,
+                children: [
+                  Icon(Icons.star, color: Colors.amber),
+                  Icon(Icons.star, color: Colors.amber),
+                  Icon(Icons.star, color: Colors.amber),
+                  Text(popularpackage.ratings),
+                ],
+              )
             ],
           ),
-        ),
-      ],
+          TextButton(onPressed: () {}, child: Text(popularpackage.pricePerStay))
+        ],
+      ),
     );
   }
 }

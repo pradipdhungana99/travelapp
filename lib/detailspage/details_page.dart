@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_app/data.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_app/controllers/destination_controller.dart';
 // import 'package:go_router/go_router.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -22,7 +23,9 @@ class _DetailsPageState extends State<DetailsPage> {
   ];
   @override
   Widget build(BuildContext context) {
-    final destination = destinations
+    final destination = context
+        .watch<DestinationController>()
+        .destinations
         .firstWhere((element) => element.id == widget.destinationId);
     return Scaffold(
       body: ListView(
@@ -31,7 +34,7 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Stack(
               children: [
                 Image.network(
-                  destination.image,
+                  destination.imageUrl,
                   height: 350,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -59,7 +62,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.bookmark_border),
+                          icon: Icon(Icons.delete),
                         ),
                       ],
                     ),
@@ -100,7 +103,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       ],
                     ),
                     Image.network(
-                      destination.image,
+                      destination.imageUrl,
                       height: 50,
                       width: 50,
                       fit: BoxFit.cover,
@@ -116,7 +119,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     Row(
                       children: [
                         Icon(Icons.location_on_outlined),
-                        Text(destination.city),
+                        Text(destination.location),
                       ],
                     ),
                     Row(
@@ -131,7 +134,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     Row(
                       children: [
                         Text(
-                          '\$${destination.pricePerperson}/',
+                          '',
+                          // '\$${destination.pricePerperson}/',
                           style: TextStyle(color: Colors.blueAccent),
                         ),
                         Text('Person')

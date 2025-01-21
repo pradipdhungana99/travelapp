@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_app/controllers/destination_controller.dart';
 
 import '../maindata.dart';
 // import 'package:travel_app/data.dart';
@@ -179,10 +181,17 @@ class DestinationCards extends StatelessWidget {
                   top: 8,
                   right: 8,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<DestinationController>(context, listen: false)
+                          .deleteDestination(destination.id);
+
+                      context
+                          .read<DestinationController>()
+                          .deleteDestination(destination.id);
+                    },
                     icon: Icon(
-                      Icons.bookmark_border,
-                      color: const Color.fromARGB(255, 14, 14, 14),
+                      Icons.delete,
+                      color: Colors.red,
                       size: 24,
                     ),
                   ),
@@ -256,10 +265,37 @@ Future<List<DestinationAPI>> getDestination() async {
   return destinations;
 }
 
-class GetDestinationList extends StatelessWidget {
+class GetDestinationList extends StatefulWidget {
   const GetDestinationList({super.key});
+
+  @override
+  State<GetDestinationList> createState() => _GetDestinationListState();
+}
+
+class _GetDestinationListState extends State<GetDestinationList> {
+  @override
+  void initState() {
+    context.read<DestinationController>().getDestinations();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    return Consumer<DestinationController>(
+      builder: (context, value, child) {
+        return ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            final destination = value.destinations[index];
+            return DestinationCards(destination: destination);
+          },
+          separatorBuilder: (context, index) {
+            return SizedBox(width: 10);
+          },
+          itemCount: value.destinations.length,
+        );
+      },
+    );
     return FutureBuilder(
       future: getDestination(),
       builder: (context, snapshot) {

@@ -118,40 +118,48 @@ class PopularTripPackage extends StatelessWidget {
         ],
       ),
       child: Row(
+        spacing: 16,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              popularpackage.image,
-              fit: BoxFit.cover,
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                popularpackage.image,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 15,
-            children: [
-              Text(
-                popularpackage.title,
-                style: TextStyle(fontSize: 40),
-              ),
-              Row(
-                spacing: 10,
-                children: [
-                  Icon(Icons.calendar_month_outlined),
-                  Text(popularpackage.tripDate, style: TextStyle(fontSize: 20)),
-                ],
-              ),
-              Row(
-                spacing: 5,
-                children: [
-                  Icon(Icons.star, color: Colors.amber),
-                  Icon(Icons.star, color: Colors.amber),
-                  Icon(Icons.star, color: Colors.amber),
-                  Text(popularpackage.ratings),
-                ],
-              )
-            ],
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 15,
+              children: [
+                Text(
+                  popularpackage.title,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 30),
+                ),
+                Row(
+                  spacing: 10,
+                  children: [
+                    Icon(Icons.calendar_month_outlined),
+                    Text(popularpackage.tripDate,
+                        style: TextStyle(fontSize: 20)),
+                  ],
+                ),
+                Row(
+                  spacing: 5,
+                  children: [
+                    Icon(Icons.star, color: Colors.amber),
+                    Icon(Icons.star, color: Colors.amber),
+                    Icon(Icons.star, color: Colors.amber),
+                    Text(popularpackage.ratings),
+                  ],
+                )
+              ],
+            ),
           ),
           TextButton(onPressed: () {}, child: Text(popularpackage.pricePerStay))
         ],

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:travel_app/detailspage/details_page.dart';
@@ -15,8 +16,13 @@ import 'package:travel_app/signinpage/sign_in_page.dart';
 import 'package:travel_app/signuppage/sign_up_page.dart';
 import 'package:travel_app/viewpage/view_page.dart';
 
+final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> _shellNavigatorKey =
+    GlobalKey<NavigatorState>();
+
 final GoRouter router = GoRouter(
   initialLocation: '/firstpage',
+  navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
       path: '/firstpage',
@@ -41,22 +47,63 @@ final GoRouter router = GoRouter(
       name: 'forgotpassword',
       builder: (context, state) => ForgotPassword(),
     ),
-    GoRoute(
-      path: '/homepage',
-      name: 'homepage',
-      builder: (context, state) => Homepage(),
-      routes: [
-        GoRoute(
-          path: ':destinationId',
-          name: 'detailspage',
-          builder: (context, state) => DetailsPage(
-            destinationId: state.pathParameters['destinationId']!,
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return Scaffold(
+          body: navigationShell,
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: 1,
+            showUnselectedLabels: true,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                  backgroundColor: Colors.blueAccent),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.calendar_month_outlined),
+                  label: 'Calendar',
+                  backgroundColor: Colors.blueGrey),
+              BottomNavigationBarItem(
+                backgroundColor: Colors.blue,
+                icon: Icon(Icons.search),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.message_rounded),
+                label: 'Messages',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle),
+                label: 'Profile',
+              ),
+            ],
           ),
+        );
+      },
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: _shellNavigatorKey,
           routes: [
             GoRoute(
-              path: 'viewpage',
-              name: 'viewpage',
-              builder: (context, state) => ViewPage(),
+              path: '/homepage',
+              name: 'homepage',
+              builder: (context, state) => Homepage(),
+              routes: [
+                GoRoute(
+                  path: ':destinationId',
+                  name: 'detailspage',
+                  builder: (context, state) => DetailsPage(
+                    destinationId: state.pathParameters['destinationId']!,
+                  ),
+                  routes: [
+                    GoRoute(
+                      path: 'viewpage',
+                      name: 'viewpage',
+                      builder: (context, state) => ViewPage(),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

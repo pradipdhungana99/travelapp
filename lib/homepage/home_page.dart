@@ -3,13 +3,26 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_app/controllers/destination_controller.dart';
 
 import '../maindata.dart';
 // import 'package:travel_app/data.dart';
 // import 'package:travel_app/data.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
+  void initState() {
+    context.read<DestinationController>().getDestination();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,33 +108,6 @@ class Homepage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        showUnselectedLabels: true,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Colors.blueAccent),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined),
-              label: 'Calendar',
-              backgroundColor: Colors.blueGrey),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.blue,
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message_rounded),
-            label: 'Messages',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
-          ),
-        ],
-      ),
     );
   }
 }
@@ -178,12 +164,18 @@ class DestinationCards extends StatelessWidget {
                 Positioned(
                   top: 8,
                   right: 8,
-                  child: IconButton(
-                    onPressed: () {},
+                  child: TextButton.icon(
+                    onPressed: () {
+                      Provider.of<DestinationController>(context, listen: false)
+                          .deleteData(destination.id);
+                    },
                     icon: Icon(
-                      Icons.bookmark_border,
-                      color: const Color.fromARGB(255, 14, 14, 14),
-                      size: 24,
+                      Icons.delete,
+                      color: Colors.black,
+                    ),
+                    label: Text(
+                      'Delete Destinations',
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
@@ -260,25 +252,18 @@ class GetDestinationList extends StatelessWidget {
   const GetDestinationList({super.key});
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getDestination(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.hasData) {
-          return ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              final destination = snapshot.data![index];
-              return DestinationCards(destination: destination);
-            },
-            separatorBuilder: (context, index) {
-              return SizedBox(width: 10);
-            },
-            itemCount: snapshot.data!.length,
-          );
-        }
-        return SizedBox(
-          height: 10,
+    return Consumer<DestinationController>(
+      builder: (context, value, child) {
+        return ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            final destination = value.destinations[index];
+            return DestinationCards(destination: destination);
+          },
+          separatorBuilder: (context, index) {
+            return SizedBox(width: 10);
+          },
+          itemCount: value.destinations.length,
         );
       },
     );

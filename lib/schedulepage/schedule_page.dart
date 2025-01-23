@@ -193,21 +193,6 @@ class _TableEventsExampleState extends State<SchedulePage> {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        currentIndex: 4,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined), label: 'Calendar'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_rounded),
-              label: 'Profile',
-              backgroundColor: Colors.blueGrey[800])
-        ],
-      ),
     );
   }
 }

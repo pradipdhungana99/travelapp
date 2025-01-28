@@ -35,19 +35,16 @@ class _HomepageState extends State<Homepage> {
         title: TextButton(
           onPressed: () {},
           child: Row(
+            spacing: 4,
             mainAxisSize: MainAxisSize.min,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                    'https://images.pexels.com/photos/8159657/pexels-photo-8159657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-                    height: 40,
-                    width: 40,
-                    fit: BoxFit.contain),
+              CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://images.pexels.com/photos/8159657/pexels-photo-8159657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
               ),
               Text(
                 'John Doe',
-                style: TextStyle(fontSize: 20, color: Colors.black),
+                style: TextStyle(fontSize: 18, color: Colors.black),
               ),
             ],
           ),

@@ -80,35 +80,35 @@ class _ProfilePageState extends State<ProfilePage> {
             ListTile(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: Colors.grey.shade300),
               ),
               leading: Icon(Icons.account_circle_rounded),
               onTap: () {
                 context.goNamed('editprofilepage');
               },
               title: Text('Edit Profile'),
-              tileColor: Colors.grey.shade200,
               trailing: Icon(Icons.arrow_forward_ios_outlined),
             ),
             SizedBox(height: 10),
             ListTile(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: Colors.grey.shade300),
               ),
               leading: Icon(Icons.bookmark_border_outlined),
               onTap: () {},
               title: Text('Bookmarked'),
-              tileColor: Colors.grey.shade200,
               trailing: Icon(Icons.arrow_forward_ios_outlined),
             ),
             SizedBox(height: 10),
             ListTile(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: Colors.grey.shade300),
               ),
               leading: Icon(Icons.airplane_ticket_outlined),
               onTap: () {},
               title: Text('Previous Trips'),
-              tileColor: Colors.grey.shade200,
               trailing: Icon(Icons.arrow_forward_ios_outlined),
             ),
             SizedBox(height: 10),
@@ -117,11 +117,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 context.goNamed('popularpackage');
               },
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.grey.shade300)),
+                borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: Colors.grey.shade300),
+              ),
               leading: Icon(Icons.settings_outlined),
               title: Text('Settings'),
-              tileColor: Colors.grey.shade200,
               trailing: Icon(Icons.arrow_forward_ios_outlined),
             ),
             SizedBox(height: 10),
@@ -129,10 +129,10 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: () {},
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: Colors.grey.shade300),
               ),
               leading: Icon(Icons.search),
               title: Text('Edit Profile'),
-              tileColor: Colors.grey.shade200,
               trailing: Icon(Icons.arrow_forward_ios_outlined),
             ),
           ],

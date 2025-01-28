@@ -8,7 +8,7 @@ import 'package:travel_app/editprofilepage/edit_profile_page.dart';
 import 'package:travel_app/homepage/home_page.dart';
 import 'package:travel_app/message/message_details.dart';
 import 'package:travel_app/message/message_home.dart';
-import 'package:travel_app/message/widgets/message_card.dart';
+
 import 'package:travel_app/notificationpage/notification_page.dart';
 import 'package:travel_app/otpverification/otp_verification.dart';
 import 'package:travel_app/popularpackagepage/popular_package_page.dart';
@@ -16,6 +16,7 @@ import 'package:travel_app/popularplacespage/popular_places.dart';
 // import 'package:travel_app/practice.dart';
 import 'package:travel_app/profilepage/profile_page.dart';
 import 'package:travel_app/schedulepage/schedule_page.dart';
+import 'package:travel_app/searchplacespage/searchplacespage.dart';
 import 'package:travel_app/splashpage/splash_page.dart';
 import 'package:travel_app/onboardpage/onboard_pages.dart';
 import 'package:travel_app/passwordreset/forgot_password.dart';
@@ -186,6 +187,11 @@ final GoRouter router = GoRouter(
       path: '/notificationpage',
       name: 'notificationpage',
       builder: (context, state) => NotificationPage(),
+    ),
+    GoRoute(
+      path: '/searchplacespage',
+      name: 'searchpage',
+      builder: (context, state) => Searchplacespage(),
     ),
   ],
 );

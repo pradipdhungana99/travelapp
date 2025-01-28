@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -18,7 +19,9 @@ class NotificationPage extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              context.goNamed('searchpage');
+            },
             child: Text(
               'Clear All',
               style: TextStyle(fontSize: 20, color: Colors.blue),
@@ -74,7 +77,7 @@ class NotificationPage extends StatelessWidget {
             onTap: () {},
             title: Text('Super Offer',
                 style: TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: Text('This is a notification'),
+            subtitle: Text('Get 60% off in our first booking'),
             trailing: Text(
               DateFormat.jm().format(
                 DateTime.now(),
@@ -89,7 +92,7 @@ class NotificationPage extends StatelessWidget {
             onTap: () {},
             title: Text('Super Offer',
                 style: TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: Text('This is a notification'),
+            subtitle: Text('Get 60% off in our first booking'),
             trailing: Text(
               DateFormat.jm().format(
                 DateTime.now(),
@@ -104,7 +107,7 @@ class NotificationPage extends StatelessWidget {
             onTap: () {},
             title: Text('Super Offer',
                 style: TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: Text('This is a notification'),
+            subtitle: Text('Get 60% off in our first booking'),
             trailing: Text(
               DateFormat.jm().format(
                 DateTime.now(),
@@ -119,7 +122,7 @@ class NotificationPage extends StatelessWidget {
             onTap: () {},
             title: Text('Super Offer',
                 style: TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: Text('This is a notification'),
+            subtitle: Text('Get 60% off in our first booking'),
             trailing: Text(
               DateFormat.jm().format(
                 DateTime.now(),
@@ -134,7 +137,7 @@ class NotificationPage extends StatelessWidget {
             onTap: () {},
             title: Text('Super Offer',
                 style: TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: Text('This is a notification'),
+            subtitle: Text('Get 60% off in our first booking'),
             trailing: Text(
               DateFormat.jm().format(
                 DateTime.now(),

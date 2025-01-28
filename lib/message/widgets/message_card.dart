@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:travel_app/message/message_details.dart';
 
 enum UserStatus {
   active,
@@ -10,7 +11,7 @@ enum UserStatus {
 }
 
 class MessageCard extends StatelessWidget {
-  final Message message;
+  final Conversation message;
   final UserStatus status;
 
   const MessageCard({
@@ -72,7 +73,7 @@ class MessageCard extends StatelessWidget {
               'Typing...',
               style: TextStyle(color: Colors.blue),
             )
-          : Text(message.lastMessage),
+          : Text(''),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -92,19 +93,19 @@ class MessageCard extends StatelessWidget {
   }
 }
 
-class Message {
+class Conversation {
   final String profileImage;
   final String userName;
-  final String lastMessage;
+  List<MessageContent> messages;
   final DateTime lastSentAt;
   final bool isSeen;
   final bool isTyping;
   final bool isRead;
 
-  Message({
+  Conversation({
+    required this.messages,
     required this.profileImage,
     this.isSeen = false,
-    required this.lastMessage,
     required this.lastSentAt,
     required this.userName,
     this.isTyping = false,

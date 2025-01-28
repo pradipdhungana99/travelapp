@@ -82,7 +82,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               leading: Icon(Icons.account_circle_rounded),
-              onTap: () {},
+              onTap: () {
+                context.goNamed('editprofilepage');
+              },
               title: Text('Edit Profile'),
               tileColor: Colors.grey.shade200,
               trailing: Icon(Icons.arrow_forward_ios_outlined),

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_app/controllers/message_controller.dart';
 
 import 'package:travel_app/detailspage/details_page.dart';
+import 'package:travel_app/editprofilepage/edit_profile_page.dart';
 import 'package:travel_app/homepage/home_page.dart';
 import 'package:travel_app/message/message_details.dart';
 import 'package:travel_app/message/message_home.dart';
+import 'package:travel_app/message/widgets/message_card.dart';
+import 'package:travel_app/notificationpage/notification_page.dart';
 import 'package:travel_app/otpverification/otp_verification.dart';
 import 'package:travel_app/popularpackagepage/popular_package_page.dart';
 import 'package:travel_app/popularplacespage/popular_places.dart';
@@ -135,13 +140,13 @@ final GoRouter router = GoRouter(
                   path: ':username',
                   name: 'message-details',
                   builder: (context, state) {
+                    final username = state.pathParameters['username'];
+
                     return MessageDetails(
-                      conversation: Conversation(
-                          sender: 'sender',
-                          receiver: 'receiver',
-                          messages: []
-                         ),
-                    );
+                        conversation: context
+                            .watch<MessageController>()
+                            .conversations
+                            .firstWhere((c) => c.userName == username));
                   },
                 )
               ],
@@ -154,27 +159,33 @@ final GoRouter router = GoRouter(
               path: '/profilepage',
               name: 'profilepage',
               builder: (context, state) => ProfilePage(),
+              routes: [
+                GoRoute(
+                  parentNavigatorKey: _rootNavigatorKey,
+                  path: '/editprofilepage',
+                  name: 'editprofilepage',
+                  builder: (context, state) => EditProfilePage(),
+                )
+              ],
             ),
           ],
         ),
       ],
     ),
-
     GoRoute(
       path: '/otpverification',
       name: 'otpverification',
       builder: (context, state) => OtpVerificationPage(),
     ),
-
     GoRoute(
       path: '/popularplacespage',
       name: 'popularpage',
       builder: (context, state) => PopularPlaces(),
     ),
-    // GoRoute(
-    //   path: '/profilepage',
-    //   name: 'profilepage',
-    //   builder: (context, state) => ProfilePage(),
-    // ),
+    GoRoute(
+      path: '/notificationpage',
+      name: 'notificationpage',
+      builder: (context, state) => NotificationPage(),
+    ),
   ],
 );

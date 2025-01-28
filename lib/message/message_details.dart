@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_app/controllers/message_controller.dart';
+import 'package:travel_app/message/widgets/message_card.dart';
 
-class MessageDetails extends StatelessWidget {
+class MessageDetails extends StatefulWidget {
   final Conversation conversation;
 
   const MessageDetails({super.key, required this.conversation});
+
+  @override
+  State<MessageDetails> createState() => _MessageDetailsState();
+}
+
+class _MessageDetailsState extends State<MessageDetails> {
+  final textPrintController = TextEditingController();
+
   Widget _buildMessage(int index) {
-    final messageContent = conversation.messages[index];
-    if (messageContent.user == conversation.sender) {
+    final messageContent = widget.conversation.messages[index];
+    if (messageContent.message == widget.conversation.userName) {
       return SentMessageWidget(content: messageContent);
     }
     return RecievedMessageWidget(receivedContent: messageContent);
@@ -36,22 +47,22 @@ class MessageDetails extends StatelessWidget {
           )
         ],
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+            border: Border(top: BorderSide(style: BorderStyle.solid))),
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 8),
         child: Column(
           spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Divider(),
-            Spacer(),
-            for (int i = 0; i < conversation.messages.length; i++)
+            for (int i = 0; i < widget.conversation.messages.length; i++)
               _buildMessage(i),
-            Spacer(),
             Row(
               children: [
                 Expanded(
                   child: TextFormField(
+                    controller: textPrintController,
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.attach_file),
                       hintText: 'Type your message',
@@ -61,7 +72,20 @@ class MessageDetails extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.voice_chat))
+                IconButton(
+                    onPressed: () {
+                      context.read<MessageController>().sendMessage(
+                            MessageContent(
+                              message: textPrintController.text,
+                              sentAt: DateTime.now(),
+                              userProfileImageUrl: '',
+                              user: widget.conversation.userName,
+                              recievedAt: DateTime.now(),
+                            ),
+                          );
+                      textPrintController.clear();
+                    },
+                    icon: Icon(Icons.send))
               ],
             ),
           ],
@@ -156,15 +180,6 @@ class RecievedMessageWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-class Conversation {
-  final String sender;
-  final String receiver;
-  final List<MessageContent> messages;
-
-  Conversation(
-      {required this.sender, required this.receiver, required this.messages});
 }
 
 class MessageContent {

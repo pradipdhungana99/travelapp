@@ -44,69 +44,101 @@ class Searchplacespage extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(0, 3),
-                    blurRadius: 2,
-                    spreadRadius: 0,
-                  )
-                ],
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Image.network(
-                        'https://images.pexels.com/photos/2409958/pexels-photo-2409958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-                        fit: BoxFit.cover),
-                  ),
-                ],
-              ),
-            ),
-          )
+          Destinationsearch(),
         ],
       ),
     );
   }
 }
 
-class SearchData {
+class Destinationsearch extends StatelessWidget {
+  const Destinationsearch({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0, 3),
+            blurRadius: 2,
+            spreadRadius: 0,
+          )
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Image.network(
+                'https://images.pexels.com/photos/2409958/pexels-photo-2409958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                fit: BoxFit.cover),
+          ),
+          Text(
+            'Khaptad National Park',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.location_on_outlined),
+              ),
+              Text('Khaptad, Nepal'),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                '\$899',
+                style: TextStyle(fontSize: 16, color: Colors.blue),
+              ),
+              Text('/Person')
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Placesdetails {
   final String imageUrl;
   final String title;
   final String location;
   final String pricePerPersona;
 
-  SearchData(
+  Placesdetails(
       {required this.imageUrl,
       required this.title,
       required this.location,
       required this.pricePerPersona});
 }
 
-List<SearchData> searchData = [
-  SearchData(
+List<Placesdetails> searchData = [
+  Placesdetails(
+    imageUrl: 'https://i.imgur.com/8QK0eBp.jpg',
+    title: '',
+    location: 'New York',
+    pricePerPersona: '\$100',
+  ),
+  Placesdetails(
     imageUrl: 'https://i.imgur.com/8QK0eBp.jpg',
     title: 'Hotel 1',
     location: 'New York',
     pricePerPersona: '\$100',
   ),
-  SearchData(
+  Placesdetails(
     imageUrl: 'https://i.imgur.com/8QK0eBp.jpg',
     title: 'Hotel 1',
     location: 'New York',
     pricePerPersona: '\$100',
   ),
-  SearchData(
-    imageUrl: 'https://i.imgur.com/8QK0eBp.jpg',
-    title: 'Hotel 1',
-    location: 'New York',
-    pricePerPersona: '\$100',
-  ),
-  SearchData(
+  Placesdetails(
     imageUrl: 'https://i.imgur.com/8QK0eBp.jpg',
     title: 'Hotel 1',
     location: 'New York',

@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_app/controllers/message_controller.dart';
 import 'package:travel_app/message/widgets/message_card.dart';
+import 'package:travel_app/models/message_content.dart';
 
 class MessageDetails extends StatefulWidget {
   final Conversation conversation;
@@ -180,22 +181,4 @@ class RecievedMessageWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-class MessageContent {
-  final String message;
-  final DateTime sentAt;
-  final String userProfileImageUrl;
-  final bool isSeen;
-  final String user;
-  final DateTime recievedAt;
-
-  MessageContent({
-    required this.message,
-    required this.sentAt,
-    required this.userProfileImageUrl,
-    this.isSeen = false,
-    required this.user,
-    required this.recievedAt,
-  });
 }

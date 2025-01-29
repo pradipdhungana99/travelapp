@@ -6,8 +6,8 @@ part of 'message_content.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MessageContent _$MessageContentFromJson(Map<String, dynamic> json) =>
-    MessageContent(
+_$MessageContentImpl _$$MessageContentImplFromJson(Map<String, dynamic> json) =>
+    _$MessageContentImpl(
       message: json['message'] as String,
       sentAt: DateTime.parse(json['sentAt'] as String),
       userProfileImageUrl: json['userProfileImageUrl'] as String,
@@ -16,7 +16,8 @@ MessageContent _$MessageContentFromJson(Map<String, dynamic> json) =>
       recievedAt: DateTime.parse(json['recievedAt'] as String),
     );
 
-Map<String, dynamic> _$MessageContentToJson(MessageContent instance) =>
+Map<String, dynamic> _$$MessageContentImplToJson(
+        _$MessageContentImpl instance) =>
     <String, dynamic>{
       'message': instance.message,
       'sentAt': instance.sentAt.toIso8601String(),
